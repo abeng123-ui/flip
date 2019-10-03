@@ -11,20 +11,21 @@ API Flip
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the software
 - Postman
 	- Upload json collection into Postman 
 - XAMPP
-	- Upload project into htdocs folder
-	- Import database
+	- Clone PHP project (this link) into htdocs folder
+	- Import database db_flip.sql
 
 ## Running the application API
-- Open postman
-- API disburse
-	- Fill data at raw json data
-	- Click send button
-- API disburse_status
-	- Fill data at raw json data
-	- Click send button
+- Open postman and hit API below :
+	- API disburse
+		- Fill data at raw json data
+		- Click send button
+	- API disburse_status
+		- Fill data at raw json data
+		- Click send button
+	- Check updated data at Transaksi table at db_flip database
 
 
