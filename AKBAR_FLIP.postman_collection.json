@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "ba1f3ebe-2e43-4472-a65f-0b13f865586c",
+		"name": "AKBAR_FLIP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API Disburse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\" : \"567567567\",\r\n    \"bank_code\" : \"BCA\",\r\n    \"amount\" : \"10000\",\r\n    \"remark\" : \"Test\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost/flip/api/disburse.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"flip",
+						"api",
+						"disburse.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Disburse Status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"3804153974\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost/flip/api/disburse_status.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"flip",
+						"api",
+						"disburse_status.php"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

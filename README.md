@@ -5,9 +5,9 @@
 API Flip
 
 ## Material
-- Postman collection bernama AKBAR_FLIP
-- Link project di Git
-- Database
+- PHP project at folder named Flip
+- Postman collection file named AKBAR_FLIP.postman_collection.json
+- Database file named db_flip.sql
 
 ### Prerequisites
 

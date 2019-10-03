@@ -20,55 +20,66 @@ try
 	$apiHelper = new apiHelper();
 	$posted    = json_decode(file_get_contents("php://input"));
 
-	$param = [
-	    "id" => $posted->id
-	];
-
-	$result = $apiHelper->get($param);
-	$result = json_decode($result);
-
-	if(isset($result->status))
+	if(!empty($posted->id))
 	{
-		// save data
-		$transaksi = new Transaksi($db);
 
-		$transaksi->id_flip = $posted->id;
-		$transaksi->status = $result->status;
-		$transaksi->receipt = $result->receipt;
-		$transaksi->time_served = $result->time_served;
-		$transaksi->updated_at = date('Y-m-d H:i:s');
+		$param = [
+		    "id" => $posted->id
+		];
 
-		if($transaksi->update())
+		$result = $apiHelper->get($param);
+		$result = json_decode($result);
+
+		if(isset($result->status))
 		{
-	 
-		    http_response_code(200);
-	 
-			$result = array(
-					"status" => 1,
-			        "message" => "Sukses.",
-			        "data" => $result
-			);
-		}
-		else{
+			// save data
+			$transaksi = new Transaksi($db);
+
+			$transaksi->id_flip = $posted->id;
+			$transaksi->status = $result->status;
+			$transaksi->receipt = $result->receipt;
+			$transaksi->time_served = $result->time_served;
+			$transaksi->updated_at = date('Y-m-d H:i:s');
+
+			if($transaksi->update())
+			{
 		 
-		    // set response code - 503 service unavailable
-		    http_response_code(503);
+			    http_response_code(200);
 		 
-		    $result = array(
+				$result = array(
+						"status" => 1,
+				        "message" => "Sukses.",
+				        "data" => $result
+				);
+			}
+			else{
+			 
+			    // set response code - 503 service unavailable
+			    http_response_code(503);
+			 
+			    $result = array(
+			        	"status" => 0,
+			        	"message" => "Gagal, update status failed"
+			    );
+			}
+
+			
+		}else{
+			http_response_code(404);
+		 
+		    echo json_encode(
+		        array(
 		        	"status" => 0,
-		        	"message" => "Gagal, update status failed"
+		        	"message" => "Gagal."
+		        )
 		    );
 		}
-
-		
 	}else{
-		http_response_code(404);
-	 
-	    echo json_encode(
-	        array(
+		http_response_code(503);
+			 
+	    $result = array(
 	        	"status" => 0,
-	        	"message" => "Gagal."
-	        )
+	        	"message" => "Gagal, isi data dengan benar."
 	    );
 	}
 
